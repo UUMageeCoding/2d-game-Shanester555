@@ -14,6 +14,8 @@ public class PlatformerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private float moveInput;
+    public float coyoteTime = 0.1f;
+    public bool canJump = false;
     
     void Start()
     {
@@ -32,9 +34,24 @@ public class PlatformerController : MonoBehaviour
         
         // Check if grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        
+        coyoteTime -= Time.deltaTime;
+
+        if (isGrounded)
+        {
+            coyoteTime = 0.1f;
+        }
+
+        if (isGrounded || coyoteTime > 0)
+        {
+            canJump = true;
+        }
+        else
+        {
+            canJump = false;
+        }
+
         // Jump input
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && canJump == true)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
