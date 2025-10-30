@@ -36,8 +36,8 @@ public class PlatformerController : MonoBehaviour
     private float wallJumpDirection;
     private float wallJumpTime = 0.2f;
     private float wallJumpCounter;
-    private float wallJumpDuration = 0.4f;
-    private Vector2 wallJumpPower = new Vector2(8f, 16f);
+    [SerializeField] private float wallJumpDuration = 0.2f;
+    [SerializeField] private Vector2 wallJumpPower = new Vector2(8f, 16f);
     
     void Start()
     {
@@ -98,7 +98,7 @@ public class PlatformerController : MonoBehaviour
         }
 
         // can only dash on the ground
-        if (Input.GetKeyDown(KeyCode.E) && canDash && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && IsGrounded())
         {
             StartCoroutine(Dash());
         }
@@ -207,6 +207,7 @@ public class PlatformerController : MonoBehaviour
             wallJumpCounter -= Time.deltaTime;
         }
 
+        // allows players to wall jump again after set amount of time
         if (Input.GetButtonDown("Jump") && wallJumpCounter > 0f)
         {
             isWallJumping = true;
@@ -225,8 +226,10 @@ public class PlatformerController : MonoBehaviour
         }
     }
 
+    // stops wall jump function while refreshing player's double jump
     private void StopWallJumping()
     {
         isWallJumping = false;
+        canDoubleJump = true;
     }
 }
