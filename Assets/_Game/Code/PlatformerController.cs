@@ -40,7 +40,7 @@ public class PlatformerController : MonoBehaviour
     private float wallJumpTime = 0.2f;
     private float wallJumpCounter;
     [SerializeField] private float wallJumpDuration = 0.2f;
-    [SerializeField] private Vector2 wallJumpPower = new Vector2(8f, 16f);
+    [SerializeField] private Vector2 wallJumpPower = new Vector2(8f, 20f);
     // checkpoint variables
     private Vector3 respawnPoint;
     
@@ -67,6 +67,11 @@ public class PlatformerController : MonoBehaviour
         {
             WallSlide();
             WallJump();
+        }
+
+        if (IsWalled() && !canDoubleJump)
+        {
+            canDoubleJump = false;
         }
 
         // only uses the flip function if player isn't wall jumping
@@ -105,7 +110,7 @@ public class PlatformerController : MonoBehaviour
         }
 
         // allows player to double jump midair once
-        if (Input.GetButtonDown("Jump") && !canJump && canDoubleJump)
+        if (Input.GetButtonDown("Jump") && !canJump && canDoubleJump && !IsWalled())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             canDoubleJump = false;
@@ -244,7 +249,10 @@ public class PlatformerController : MonoBehaviour
     private void StopWallJumping()
     {
         isWallJumping = false;
-        canDoubleJump = true;
+        if (doubleJumpUnlock)
+        {
+            canDoubleJump = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -260,15 +268,18 @@ public class PlatformerController : MonoBehaviour
         else if (collision.tag == "Dash")
         {
             dashUnlock = true;
+            Destroy(collision.gameObject);
             Debug.Log("It works!!!!!!!");
         }
         else if (collision.tag == "DoubleJump")
         {
             doubleJumpUnlock = true;
+            Destroy(collision.gameObject);
         }
         else if (collision.tag == "WallJump")
         {
             wallJumpUnlock = true;
+            Destroy(collision.gameObject);
         }
     }
 }
