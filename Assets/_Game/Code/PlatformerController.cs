@@ -25,11 +25,14 @@ public class PlatformerController : MonoBehaviour
     // jump variables
     public float coyoteTime = 0.1f;
     public bool canJump = false;
+    private bool doubleJumpUnlock = false;
     public bool canDoubleJump = false;
     // dash variables
+    private bool dashUnlock = false;
     public bool canDash = true;
     public bool isDashing = false;
     // wall jump variables
+    private bool wallJumpUnlock = false;
     private bool isWallSliding;
     private float wallSlideSpeed = 2f;
     private bool isWallJumping;
@@ -38,6 +41,8 @@ public class PlatformerController : MonoBehaviour
     private float wallJumpCounter;
     [SerializeField] private float wallJumpDuration = 0.2f;
     [SerializeField] private Vector2 wallJumpPower = new Vector2(8f, 16f);
+    // checkpoint variables
+    private Vector3 respawnPoint;
     
     void Start()
     {
@@ -47,6 +52,9 @@ public class PlatformerController : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 3f;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        // set player respawn point
+        respawnPoint = transform.position;
     }
 
     void Update()
@@ -55,8 +63,11 @@ public class PlatformerController : MonoBehaviour
         moveInput = Input.GetAxisRaw("Horizontal");
 
         // calls wall jump functions
-        WallSlide();
-        WallJump();
+        if (wallJumpUnlock)
+        {
+            WallSlide();
+            WallJump();
+        }
 
         // only uses the flip function if player isn't wall jumping
         if (!isWallJumping)
@@ -71,7 +82,10 @@ public class PlatformerController : MonoBehaviour
         if (IsGrounded())
         {
             coyoteTime = 0.1f;
-            canDoubleJump = true;
+            if (doubleJumpUnlock)
+            {
+                canDoubleJump = true;
+            }
         }
 
         // allows player to briefly jump if they still have coyote time
@@ -98,7 +112,7 @@ public class PlatformerController : MonoBehaviour
         }
 
         // can only dash on the ground
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && IsGrounded() && dashUnlock)
         {
             StartCoroutine(Dash());
         }
@@ -231,5 +245,30 @@ public class PlatformerController : MonoBehaviour
     {
         isWallJumping = false;
         canDoubleJump = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "KillPlayer")
+        {
+            transform.position = respawnPoint;
+        }
+        else if (collision.tag == "Checkpoint")
+        {
+            respawnPoint = transform.position;
+        }
+        else if (collision.tag == "Dash")
+        {
+            dashUnlock = true;
+            Debug.Log("It works!!!!!!!");
+        }
+        else if (collision.tag == "DoubleJump")
+        {
+            doubleJumpUnlock = true;
+        }
+        else if (collision.tag == "WallJump")
+        {
+            wallJumpUnlock = true;
+        }
     }
 }

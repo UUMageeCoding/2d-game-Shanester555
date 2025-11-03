@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Checkpoint
+  - KillPlayer
+  - Collectable
+  - Dash
+  - WallJump
+  - DoubleJump
   layers:
   - Default
   - TransparentFX
