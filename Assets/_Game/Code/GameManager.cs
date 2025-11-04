@@ -4,6 +4,11 @@ public class GameManager : MonoBehaviour
 {
     // Singleton instance
     private static GameManager _instance;
+    public static bool doubleJumpUnlock = false;
+    public static bool dashUnlock = false;
+    public static bool wallJumpUnlock = false;
+
+    public static int collectableCount;
 
     public static GameManager Instance
     {

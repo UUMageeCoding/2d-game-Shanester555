@@ -25,14 +25,11 @@ public class PlatformerController : MonoBehaviour
     // jump variables
     public float coyoteTime = 0.1f;
     public bool canJump = false;
-    private bool doubleJumpUnlock = false;
     public bool canDoubleJump = false;
     // dash variables
-    private bool dashUnlock = false;
     public bool canDash = true;
     public bool isDashing = false;
     // wall jump variables
-    private bool wallJumpUnlock = false;
     private bool isWallSliding;
     private float wallSlideSpeed = 2f;
     private bool isWallJumping;
@@ -75,7 +72,7 @@ public class PlatformerController : MonoBehaviour
         }
 
         // calls wall jump functions
-        if (wallJumpUnlock)
+        if (GameManager.wallJumpUnlock)
         {
             WallSlide();
             WallJump();
@@ -99,7 +96,7 @@ public class PlatformerController : MonoBehaviour
         if (IsGrounded())
         {
             coyoteTime = 0.1f;
-            if (doubleJumpUnlock)
+            if (GameManager.doubleJumpUnlock)
             {
                 canDoubleJump = true;
             }
@@ -129,7 +126,7 @@ public class PlatformerController : MonoBehaviour
         }
 
         // can only dash on the ground
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && IsGrounded() && dashUnlock)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && IsGrounded() && GameManager.dashUnlock)
         {
             StartCoroutine(Dash());
         }
@@ -261,7 +258,7 @@ public class PlatformerController : MonoBehaviour
     private void StopWallJumping()
     {
         isWallJumping = false;
-        if (doubleJumpUnlock)
+        if (GameManager.doubleJumpUnlock)
         {
             canDoubleJump = true;
         }
@@ -279,17 +276,22 @@ public class PlatformerController : MonoBehaviour
         }
         else if (collision.tag == "Dash")
         {
-            dashUnlock = true;
+            GameManager.dashUnlock = true;
             Destroy(collision.gameObject);
         }
         else if (collision.tag == "DoubleJump")
         {
-            doubleJumpUnlock = true;
+            GameManager.doubleJumpUnlock = true;
             Destroy(collision.gameObject);
         }
         else if (collision.tag == "WallJump")
         {
-            wallJumpUnlock = true;
+            GameManager.wallJumpUnlock = true;
+            Destroy(collision.gameObject);
+        }
+        else if (collision.tag == "Collectable")
+        {
+            GameManager.collectableCount += 1;
             Destroy(collision.gameObject);
         }
     }
