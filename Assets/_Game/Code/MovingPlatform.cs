@@ -21,10 +21,6 @@ public class MovingPlatform : MonoBehaviour
             i++;
             if (i == points.Length)
             {
-                float x = speed;
-                speed = 0;
-                StartCoroutine(Wait());
-                speed = x;
                 i = 0;
             }
         }
@@ -32,8 +28,13 @@ public class MovingPlatform : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
     }
 
-    private IEnumerator Wait()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        yield return new WaitForSeconds(platformStop);
+        collision.transform.SetParent(transform);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        collision.transform.SetParent(null);
     }
 }

@@ -10,6 +10,7 @@ TagManager:
   - Dash
   - WallJump
   - DoubleJump
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX

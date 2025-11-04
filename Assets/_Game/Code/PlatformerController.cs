@@ -43,6 +43,9 @@ public class PlatformerController : MonoBehaviour
     [SerializeField] private Vector2 wallJumpPower = new Vector2(8f, 20f);
     // checkpoint variables
     private Vector3 respawnPoint;
+    // moving platform variables
+    private GameObject currentOneWayPlatform;
+    [SerializeField] private CapsuleCollider2D playerCollider;
     
     void Start()
     {
@@ -61,6 +64,15 @@ public class PlatformerController : MonoBehaviour
     {
         // Get horizontal input
         moveInput = Input.GetAxisRaw("Horizontal");
+
+        // Lets player phase down through one way platforms
+        if (Input.GetKeyDown(KeyCode.S) ||  Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (currentOneWayPlatform != null)
+            {
+                StartCoroutine(DisableCollision());
+            }
+        }
 
         // calls wall jump functions
         if (wallJumpUnlock)
@@ -269,7 +281,6 @@ public class PlatformerController : MonoBehaviour
         {
             dashUnlock = true;
             Destroy(collision.gameObject);
-            Debug.Log("It works!!!!!!!");
         }
         else if (collision.tag == "DoubleJump")
         {
@@ -281,5 +292,30 @@ public class PlatformerController : MonoBehaviour
             wallJumpUnlock = true;
             Destroy(collision.gameObject);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("OneWayPlatform"))
+        {
+            currentOneWayPlatform = collision.gameObject;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("OneWayPlatform"))
+        {
+            currentOneWayPlatform = null;
+        }
+    }
+
+    private IEnumerator DisableCollision()
+    {
+        BoxCollider2D platformCollider = currentOneWayPlatform.GetComponent<BoxCollider2D>();
+
+        Physics2D.IgnoreCollision(playerCollider, platformCollider);
+        yield return new WaitForSeconds(0.5f);
+        Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
     }
 }
