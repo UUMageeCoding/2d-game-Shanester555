@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static bool doubleJumpUnlock = false;
     public static bool dashUnlock = false;
     public static bool wallJumpUnlock = false;
+    public static bool initialStart = true;
 
     public static int collectableCount;
 

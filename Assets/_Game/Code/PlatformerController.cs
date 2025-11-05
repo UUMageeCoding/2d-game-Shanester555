@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlatformerController : MonoBehaviour
 {
@@ -39,10 +40,13 @@ public class PlatformerController : MonoBehaviour
     [SerializeField] private float wallJumpDuration = 0.2f;
     [SerializeField] private Vector2 wallJumpPower = new Vector2(8f, 20f);
     // checkpoint variables
-    private Vector3 respawnPoint;
+    public Vector3 respawnPoint;
     // moving platform variables
     private GameObject currentOneWayPlatform;
     [SerializeField] private CapsuleCollider2D playerCollider;
+    // spawn point variables
+    private SceneLoader sceneLoader;
+    public string previousScene;
     
     void Start()
     {
@@ -53,8 +57,14 @@ public class PlatformerController : MonoBehaviour
         rb.gravityScale = 3f;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
+        sceneLoader = GameObject.Find("SceneTransition").GetComponent<SceneLoader>();
+
         // set player respawn point
-        respawnPoint = transform.position;
+        if (GameManager.initialStart)
+        {
+            respawnPoint = transform.position;
+            GameManager.initialStart = false;
+        }
     }
 
     void Update()
@@ -293,6 +303,11 @@ public class PlatformerController : MonoBehaviour
         {
             GameManager.collectableCount += 1;
             Destroy(collision.gameObject);
+        }
+        else if (collision.tag == "SceneTransition")
+        {
+            SceneManager.LoadScene(sceneLoader.sceneName);
+            previousScene = sceneLoader.sceneName;
         }
     }
 
