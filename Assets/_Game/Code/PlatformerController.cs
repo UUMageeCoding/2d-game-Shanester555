@@ -26,11 +26,14 @@ public class PlatformerController : MonoBehaviour
     // jump variables
     public float coyoteTime = 0.1f;
     public bool canJump = false;
+    private bool doubleJumpUnlock = false;
     public bool canDoubleJump = false;
     // dash variables
+    private bool dashUnlock = false;
     public bool canDash = true;
     public bool isDashing = false;
     // wall jump variables
+    private bool wallJumpUnlock = false;
     private bool isWallSliding;
     private float wallSlideSpeed = 2f;
     private bool isWallJumping;
@@ -44,9 +47,8 @@ public class PlatformerController : MonoBehaviour
     // moving platform variables
     private GameObject currentOneWayPlatform;
     [SerializeField] private CapsuleCollider2D playerCollider;
-    // spawn point variables
-    private SceneLoader sceneLoader;
-    public string previousScene;
+    // collectable variables
+    public int collectableCount = 0;
     
     void Start()
     {
@@ -57,14 +59,7 @@ public class PlatformerController : MonoBehaviour
         rb.gravityScale = 3f;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        sceneLoader = GameObject.Find("SceneTransition").GetComponent<SceneLoader>();
-
-        // set player respawn point
-        if (GameManager.initialStart)
-        {
-            respawnPoint = transform.position;
-            GameManager.initialStart = false;
-        }
+        respawnPoint = transform.position;
     }
 
     void Update()
@@ -82,7 +77,7 @@ public class PlatformerController : MonoBehaviour
         }
 
         // calls wall jump functions
-        if (GameManager.wallJumpUnlock)
+        if (wallJumpUnlock)
         {
             WallSlide();
             WallJump();
@@ -106,7 +101,7 @@ public class PlatformerController : MonoBehaviour
         if (IsGrounded())
         {
             coyoteTime = 0.1f;
-            if (GameManager.doubleJumpUnlock)
+            if (doubleJumpUnlock)
             {
                 canDoubleJump = true;
             }
@@ -136,7 +131,7 @@ public class PlatformerController : MonoBehaviour
         }
 
         // can only dash on the ground
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && IsGrounded() && GameManager.dashUnlock)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && IsGrounded() && dashUnlock)
         {
             StartCoroutine(Dash());
         }
@@ -268,7 +263,7 @@ public class PlatformerController : MonoBehaviour
     private void StopWallJumping()
     {
         isWallJumping = false;
-        if (GameManager.doubleJumpUnlock)
+        if (doubleJumpUnlock)
         {
             canDoubleJump = true;
         }
@@ -286,28 +281,23 @@ public class PlatformerController : MonoBehaviour
         }
         else if (collision.tag == "Dash")
         {
-            GameManager.dashUnlock = true;
+            dashUnlock = true;
             Destroy(collision.gameObject);
         }
         else if (collision.tag == "DoubleJump")
         {
-            GameManager.doubleJumpUnlock = true;
+            doubleJumpUnlock = true;
             Destroy(collision.gameObject);
         }
         else if (collision.tag == "WallJump")
         {
-            GameManager.wallJumpUnlock = true;
+            wallJumpUnlock = true;
             Destroy(collision.gameObject);
         }
         else if (collision.tag == "Collectable")
         {
-            GameManager.collectableCount += 1;
+            collectableCount += 1;
             Destroy(collision.gameObject);
-        }
-        else if (collision.tag == "SceneTransition")
-        {
-            SceneManager.LoadScene(sceneLoader.sceneName);
-            previousScene = sceneLoader.sceneName;
         }
     }
 
