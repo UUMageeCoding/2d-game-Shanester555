@@ -3,13 +3,13 @@ using UnityEngine;
 public class TeleportPlayer : MonoBehaviour
 {
     public GameObject player;
-    public Transform spawnPoint;
+    public Transform target;
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.tag == ("Player"))
         {
-            player.transform.position = spawnPoint.position;
+            player.transform.position = target.position;
         }
     }
 }

@@ -219,6 +219,7 @@ MonoBehaviour:
   wallJumpPower: {x: 8, y: 12}
   respawnPoint: {x: 0, y: 0, z: 0}
   playerCollider: {fileID: 8076277190115379271}
+  collectableCount: 0
 --- !u!70 &8076277190115379271
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
