@@ -11,7 +11,7 @@ TagManager:
   - WallJump
   - DoubleJump
   - OneWayPlatform
-  - SceneTransition
+  - ScreenTransition
   layers:
   - Default
   - TransparentFX
