@@ -2,13 +2,18 @@ using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class TeleportPlayer : MonoBehaviour
+public class ScreenTransition : MonoBehaviour
 {
     public GameObject player;
     public Transform target;
 
     public CinemachineConfiner2D confiner;
     public Collider2D newBounds;
+
+    [SerializeField] Animator animator;
+    [SerializeField] float timer = 1f;
+
+    public PlatformerController platformerController;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,16 +25,23 @@ public class TeleportPlayer : MonoBehaviour
 
     private IEnumerator TeleportAndChangeBounds()
     {
-        // Teleport the player
-        player.transform.position = target.position;
+        animator.SetTrigger("End");
+        GameManager.canMove = false;
+
+        yield return new WaitForSeconds(timer);
 
         // Optionally disable confiner momentarily
         confiner.BoundingShape2D = null;
 
-        // Wait 1 second (optional, can adjust)
-        yield return new WaitForSeconds(3f);
-
         // Assign new confiner bounds
         confiner.BoundingShape2D = newBounds;
+
+        player.transform.position = target.position;
+
+        yield return new WaitForSeconds(timer);
+
+        animator.SetTrigger("Start");
+
+        GameManager.canMove = true;
     }
 }

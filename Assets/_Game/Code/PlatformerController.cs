@@ -49,7 +49,8 @@ public class PlatformerController : MonoBehaviour
     [SerializeField] private CapsuleCollider2D playerCollider;
     // collectable variables
     public int collectableCount = 0;
-    
+    // animation variables
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -65,10 +66,18 @@ public class PlatformerController : MonoBehaviour
     void Update()
     {
         // Get horizontal input
-        moveInput = Input.GetAxisRaw("Horizontal");
+        if (GameManager.canMove)
+        {
+            moveInput = Input.GetAxisRaw("Horizontal");
+        }
+        else
+        {
+            moveInput = 0;
+        }
+
 
         // Lets player phase down through one way platforms
-        if (Input.GetKeyDown(KeyCode.S) ||  Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (currentOneWayPlatform != null)
             {

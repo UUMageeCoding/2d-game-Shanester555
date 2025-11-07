@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static bool dashUnlock = false;
     public static bool wallJumpUnlock = false;
     public static bool initialStart = true;
+    public static bool canMove = true;
 
     public static int collectableCount;
 
