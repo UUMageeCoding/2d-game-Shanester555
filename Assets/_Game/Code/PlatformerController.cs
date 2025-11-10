@@ -23,6 +23,7 @@ public class PlatformerController : MonoBehaviour
     private Rigidbody2D rb;
     private float moveInput;
     private bool isFacingRight = true;
+    private bool turnAround = true;
     // jump variables
     public float coyoteTime = 0.1f;
     public bool canJump = false;
@@ -152,7 +153,7 @@ public class PlatformerController : MonoBehaviour
             tr.emitting = false;
             canDash = true;
         }
-        else if (rb.linearVelocity.magnitude < 5 && isDashing)
+        else if (isFacingRight == turnAround)
         {
             moveSpeed = maxSpeed;
             tr.emitting = false;
@@ -164,6 +165,7 @@ public class PlatformerController : MonoBehaviour
     // Coroutine to dash 
     private IEnumerator Dash()
     {
+        turnAround = !isFacingRight;
         isDashing = true;
         canDash = false;
         moveSpeed *= dashPower;
