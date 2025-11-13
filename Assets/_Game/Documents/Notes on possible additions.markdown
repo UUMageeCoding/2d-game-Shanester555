@@ -31,3 +31,5 @@
       2. track player
       3. create object moving towards player
       4. set speed, zero gravity, kill player tag, destroyed on any collision
+8. antenna upgrade
+   1. add an antenna to the head which flashes when a collectable is nearby

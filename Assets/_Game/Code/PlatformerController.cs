@@ -22,7 +22,7 @@ public class PlatformerController : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
 
     private Rigidbody2D rb;
-    private float moveInput;
+    public float moveInput;
     private bool isFacingRight = true;
     private bool turnAround = true;
     // jump variables
@@ -52,10 +52,12 @@ public class PlatformerController : MonoBehaviour
     // collectable variables
     public int collectableCount = 0;
     // animation variables
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         
         // Set to Dynamic with gravity
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -77,6 +79,14 @@ public class PlatformerController : MonoBehaviour
             moveInput = 0;
         }
 
+        if (IsGrounded() && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
+        {
+            animator.SetTrigger("Running");
+        }
+        else if (!(IsGrounded() && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))))
+        {
+            animator.SetTrigger("Idle");
+        }
 
         // Lets player phase down through one way platforms
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
