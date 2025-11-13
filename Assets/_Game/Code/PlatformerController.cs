@@ -79,13 +79,22 @@ public class PlatformerController : MonoBehaviour
             moveInput = 0;
         }
 
-        if (IsGrounded() && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
+        // animation triggers
+        if (IsGrounded() && moveInput != 0)
         {
             animator.SetTrigger("Running");
         }
-        else if (!(IsGrounded() && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))))
+        else if (IsGrounded() && moveInput == 0)
         {
             animator.SetTrigger("Idle");
+        }
+        else if (rb.linearVelocity.y > 0 && !IsGrounded())
+        {
+            animator.SetTrigger("Jump");
+        }
+        else if (rb.linearVelocity.y < 0 && !IsGrounded())
+        {
+            animator.SetTrigger("Fall");
         }
 
         // Lets player phase down through one way platforms
