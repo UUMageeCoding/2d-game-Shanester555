@@ -33,3 +33,9 @@
       4. set speed, zero gravity, kill player tag, destroyed on any collision
 8. antenna upgrade
    1. add an antenna to the head which flashes when a collectable is nearby
+
+
+Changes:
+1. Remove the black outline from the pipes
+2. Change the fall animation to have a small starting animation which transitions to a loop
+3. try combining sprite animations to the player character to change how their eyes look
