@@ -39,3 +39,4 @@ Changes:
 1. Remove the black outline from the pipes
 2. Change the fall animation to have a small starting animation which transitions to a loop
 3. try combining sprite animations to the player character to change how their eyes look
+4. fix wall jump you fucking loser
