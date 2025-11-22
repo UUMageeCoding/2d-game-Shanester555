@@ -22,7 +22,7 @@ public class OnCollection : MonoBehaviour
         if (isCollected)
         {
             collectableCount++;
-            StartCoroutine(CollectAnimTrigger)
+            StartCoroutine(CollectAnimTrigger);
             isCollected = false;
         }
     }
