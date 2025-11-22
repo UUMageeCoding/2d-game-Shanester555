@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public static bool canMove = true;
 
     public static int collectableCount;
+    public static bool isCollected;
 
     public static GameManager Instance
     {

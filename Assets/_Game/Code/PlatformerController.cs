@@ -51,6 +51,7 @@ public class PlatformerController : MonoBehaviour
     [SerializeField] private CapsuleCollider2D playerCollider;
     // collectable variables
     public int collectableCount = 0;
+    public bool isCollected = false;
     // animation variables
     private Animator animator;
 
@@ -327,8 +328,7 @@ public class PlatformerController : MonoBehaviour
         }
         else if (collision.tag == "Collectable")
         {
-            collectableCount += 1;
-            Destroy(collision.gameObject);
+            isCollected = true;
         }
     }
 
