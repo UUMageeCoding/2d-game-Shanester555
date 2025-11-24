@@ -1,7 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Tilemaps;
 
 public class PlatformerController : MonoBehaviour
 {
@@ -50,10 +48,12 @@ public class PlatformerController : MonoBehaviour
     private GameObject currentOneWayPlatform;
     [SerializeField] private CapsuleCollider2D playerCollider;
     // collectable variables
-    public int collectableCount = 0;
-    public bool isCollected = false;
+    private int currentCount = 0;
+    public float maxCount = 5;
     // animation variables
     private Animator animator;
+    // sound effects for player
+    [SerializeField] private AudioClip jumpSoundClip;
 
     void Start()
     {
@@ -152,6 +152,7 @@ public class PlatformerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && canJump)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            SoundFXManager.instance.PlaySoundFXClip(jumpSoundClip, transform, 1f, 0);
         }
 
         // allows player to double jump midair once
@@ -328,7 +329,13 @@ public class PlatformerController : MonoBehaviour
         }
         else if (collision.tag == "Collectable")
         {
-            isCollected = true;
+            if (currentCount < maxCount)
+            {
+                currentCount += 1;
+                Debug.Log(currentCount);
+            }
+            Destroy(collision.gameObject);
+            Debug.Log("Works");
         }
     }
 

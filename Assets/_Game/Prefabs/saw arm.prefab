@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7368955363460344856}
   - component: {fileID: 5771389890512804466}
   - component: {fileID: 305929278373166653}
+  - component: {fileID: 5769019727025193475}
+  - component: {fileID: 4952597288506018563}
   m_Layer: 0
   m_Name: saw arm
   m_TagString: Untagged
@@ -138,6 +140,36 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5769019727025193475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3269001586133345047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622e15afdf4457e4888f112d48d115a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 305929278373166653}
+  timer: 0
+  speed: 1
+--- !u!114 &4952597288506018563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3269001586133345047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440456d630196ba42a4faf27033729f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 666a4d60a6eb61b4d8448022c1c470af, type: 3}
+  volume: 0.5
+  clipLength: 2
 --- !u!1 &3415494057494917971
 GameObject:
   m_ObjectHideFlags: 0

@@ -145,6 +145,8 @@ GameObject:
   - component: {fileID: 6693862230348345706}
   - component: {fileID: 953543247873408615}
   - component: {fileID: 2662504816177613701}
+  - component: {fileID: 8367068247922986966}
+  - component: {fileID: 328502218460978966}
   m_Layer: 0
   m_Name: Crusher Vertical
   m_TagString: Untagged
@@ -212,6 +214,36 @@ MonoBehaviour:
   animator: {fileID: 953543247873408615}
   timer: 0
   speed: 1
+--- !u!114 &8367068247922986966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834835729782556359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440456d630196ba42a4faf27033729f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 36645d3540254af46a1aecc9db43cae6, type: 3}
+  volume: 0.5
+  clipLength: 0.75
+--- !u!114 &328502218460978966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834835729782556359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9b3645e6cc44d4c8a94d69ac770841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 78135b15153fdf44eb370a3c5f14263a, type: 3}
+  volume: 0.5
+  clipLength: 2
 --- !u!1 &4868146914520750464
 GameObject:
   m_ObjectHideFlags: 0

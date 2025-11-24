@@ -8,7 +8,7 @@ public class OnCollection : MonoBehaviour
     public float animTimer = 2f;
     private Animator animator;
 
-    [SerializeField] private BoxCollider2D collectableCollider;
+    [SerializeField] private CircleCollider2D collectableCollider;
     [SerializeField] private CapsuleCollider2D playerCollider;
 
     void Start()
@@ -22,19 +22,15 @@ public class OnCollection : MonoBehaviour
         if (isCollected)
         {
             collectableCount++;
-            StartCoroutine(CollectAnimTrigger);
+            Physics2D.IgnoreCollision(playerCollider, collectableCollider);
+
+            animator.SetBool("Collected", true);
+            Destroy(gameObject, 2);
             isCollected = false;
         }
     }
-
-    private void IEnumerator CollectAnimTrigger()
+    private IEnumerator Wait()
     {
-        Physics2D.IgnoreCollision(playerCollider, collectableCollider);
-
-        animator.SetTrigger("Collected");
         yield return new WaitForSeconds(animTimer);
-        Destroy(gameObject);
     }
-
-
 }
