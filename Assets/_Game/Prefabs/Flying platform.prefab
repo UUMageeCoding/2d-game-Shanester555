@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 1366407728055687039}
   - component: {fileID: 3513530554745755986}
   - component: {fileID: 6960461190963488401}
+  - component: {fileID: 3763387251524006530}
   m_Layer: 7
   m_Name: Square
   m_TagString: OneWayPlatform
@@ -204,6 +205,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3763387251524006530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329144323923845096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622e15afdf4457e4888f112d48d115a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 6960461190963488401}
+  timer: 0
+  speed: 1
 --- !u!1 &575271627585671789
 GameObject:
   m_ObjectHideFlags: 0
