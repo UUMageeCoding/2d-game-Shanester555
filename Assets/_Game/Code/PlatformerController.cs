@@ -47,13 +47,13 @@ public class PlatformerController : MonoBehaviour
     // moving platform variables
     private GameObject currentOneWayPlatform;
     [SerializeField] private CapsuleCollider2D playerCollider;
-    // collectable variables
-    private int currentCount = 0;
-    public float maxCount = 5;
     // animation variables
     private Animator animator;
     // sound effects for player
     [SerializeField] private AudioClip jumpSoundClip;
+    [SerializeField] private AudioClip damageSoundClip;
+    [SerializeField] private AudioClip dashSoundClip;
+    [SerializeField] private AudioClip collectableSoundClip;
 
     void Start()
     {
@@ -159,6 +159,7 @@ public class PlatformerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && !canJump && canDoubleJump && !IsWalled())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            SoundFXManager.instance.PlaySoundFXClip(jumpSoundClip, transform, 1f, 0);
             canDoubleJump = false;
         }
 
@@ -188,6 +189,7 @@ public class PlatformerController : MonoBehaviour
     private IEnumerator Dash()
     {
         turnAround = !isFacingRight;
+        SoundFXManager.instance.PlaySoundFXClip(dashSoundClip, transform, 1f, 0);
         isDashing = true;
         canDash = false;
         moveSpeed *= dashPower;
@@ -306,6 +308,7 @@ public class PlatformerController : MonoBehaviour
     {
         if (collision.tag == "KillPlayer")
         {
+            SoundFXManager.instance.PlaySoundFXClip(damageSoundClip, transform, 1f, 0);
             transform.position = respawnPoint;
         }
         else if (collision.tag == "Checkpoint")
@@ -329,13 +332,10 @@ public class PlatformerController : MonoBehaviour
         }
         else if (collision.tag == "Collectable")
         {
-            if (currentCount < maxCount)
-            {
-                currentCount += 1;
-                Debug.Log(currentCount);
-            }
+            GameManager.collectableCount++;
+            SoundFXManager.instance.PlaySoundFXClip(collectableSoundClip, transform, 1f, 0);
             Destroy(collision.gameObject);
-            Debug.Log("Works");
+            Debug.Log(GameManager.collectableCount);
         }
     }
 
