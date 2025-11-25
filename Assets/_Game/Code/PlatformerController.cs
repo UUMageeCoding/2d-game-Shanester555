@@ -152,14 +152,14 @@ public class PlatformerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && canJump)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            SoundFXManager.instance.PlaySoundFXClip(jumpSoundClip, transform, 1f, 0);
+            SoundFXManager.instance.PlaySoundFXClip(jumpSoundClip, transform, .6f, 0);
         }
 
         // allows player to double jump midair once
         if (Input.GetButtonDown("Jump") && !canJump && canDoubleJump && !IsWalled())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            SoundFXManager.instance.PlaySoundFXClip(jumpSoundClip, transform, 1f, 0);
+            SoundFXManager.instance.PlaySoundFXClip(jumpSoundClip, transform, .6f, 0);
             canDoubleJump = false;
         }
 
@@ -189,7 +189,7 @@ public class PlatformerController : MonoBehaviour
     private IEnumerator Dash()
     {
         turnAround = !isFacingRight;
-        SoundFXManager.instance.PlaySoundFXClip(dashSoundClip, transform, 1f, 0);
+        SoundFXManager.instance.PlaySoundFXClip(dashSoundClip, transform, .5f, 0);
         isDashing = true;
         canDash = false;
         moveSpeed *= dashPower;
