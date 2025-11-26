@@ -12,6 +12,7 @@ public class ScreenTransition : MonoBehaviour
 
     [SerializeField] Animator animator;
     [SerializeField] float timer = 1f;
+    [SerializeField] Rigidbody2D rb;
 
     public PlatformerController platformerController;
 
@@ -37,6 +38,8 @@ public class ScreenTransition : MonoBehaviour
         confiner.BoundingShape2D = newBounds;
 
         player.transform.position = target.position;
+
+        rb.transform.eulerAngles = new Vector3(rb.transform.eulerAngles.x, rb.transform.eulerAngles.y, 0);
 
         yield return new WaitForSeconds(timer);
 

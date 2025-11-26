@@ -5,15 +5,6 @@ TextureImporter:
   - first:
       213: -6185345479313349119
     second: Boxes_0
-  - first:
-      213: -9035456165595999183
-    second: Boxes_1
-  - first:
-      213: -9034177534490309204
-    second: Boxes_2
-  - first:
-      213: 7616711153819495923
-    second: Boxes_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,9 +104,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 63
-        width: 65
-        height: 65
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +125,20 @@ TextureImporter:
       name: Boxes_1
       rect:
         serializedVersion: 2
-        x: 79
-        y: 63
-        width: 35
-        height: 65
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 13499024d7c9b9280800000000000000
-      internalID: -9035456165595999183
+      spriteID: 0e0e84df15bcb694e8bea520142d7f2b
+      internalID: 1106006038
       vertices: []
       indices: 
       edges: []
@@ -156,20 +147,20 @@ TextureImporter:
       name: Boxes_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 14
-        width: 65
-        height: 35
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cad04e2c56720a280800000000000000
-      internalID: -9034177534490309204
+      spriteID: 790fe463c651ecd489809120b8eacaa4
+      internalID: 1654660780
       vertices: []
       indices: 
       edges: []
@@ -178,20 +169,130 @@ TextureImporter:
       name: Boxes_3
       rect:
         serializedVersion: 2
-        x: 79
-        y: 15
-        width: 34
-        height: 34
+        x: 0
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3fdaa28707ef3b960800000000000000
-      internalID: 7616711153819495923
+      spriteID: f46a3eb46166dcb44af968b43bb79c5a
+      internalID: -468989694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boxes_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db835e8bf0e86d04a8c876805b379540
+      internalID: 1900455217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boxes_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7dd0b774829ddd41a6dd134b10f29c3
+      internalID: -859825607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boxes_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cd37afc94731e6448d007989edfd632
+      internalID: -685023148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boxes_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cf2cae31b7cdcf4a8078de5ba2c239d
+      internalID: -701073115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boxes_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1be2f30deedbf3c4cb670f450011740c
+      internalID: 120512335
       vertices: []
       indices: 
       edges: []
@@ -200,7 +301,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6599a43cce2b3b646a836162e902e382
     internalID: 0
     vertices: []
     indices: 
@@ -208,12 +309,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Boxes_0: -6185345479313349119
-      Boxes_1: -9035456165595999183
-      Boxes_2: -9034177534490309204
-      Boxes_3: 7616711153819495923
+      Boxes_1: 1106006038
+      Boxes_2: 1654660780
+      Boxes_3: -468989694
+      Boxes_4: 1900455217
+      Boxes_5: -859825607
+      Boxes_6: -685023148
+      Boxes_7: -701073115
+      Boxes_8: 120512335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -40,3 +40,4 @@ Changes:
 2. Change the fall animation to have a small starting animation which transitions to a loop
 3. try combining sprite animations to the player character to change how their eyes look
 4. fix wall jump you fucking loser
+5. change moving saws to slow down near peak, most likely by slowing the speed down as the distance between two points closes
