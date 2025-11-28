@@ -3,11 +3,12 @@ using System.Collections;
 
 public class PlayerMovesWith : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D rb;
+    private Rigidbody2D rb;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collision.transform.SetParent(transform);
+        rb = collision.gameObject.GetComponent<Rigidbody2D>();
     }
 
     private void OnCollisionExit2D(Collision2D collision)

@@ -8,6 +8,5 @@ public class MidgameUI : MonoBehaviour
     void Update()
     {
         collectableDisplay.text = "Gears: " + GameManager.collectableCount;
-        Debug.Log(GameManager.collectableCount);
     }
 }
