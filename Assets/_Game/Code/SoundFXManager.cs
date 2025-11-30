@@ -20,6 +20,11 @@ public class SoundFXManager : MonoBehaviour
     {
         float distance = Vector3.Distance(player.position, spawnTransform.position);
 
+        if (distance >= maxDistance)
+        {
+            return;
+        }
+
         AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity); ;
 
         audioSource.clip = audioClip;
