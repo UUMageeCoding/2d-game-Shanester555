@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 666a4d60a6eb61b4d8448022c1c470af, type: 3}
-  volume: 0.5
+  volume: 0.3
   clipLength: 2.5
 --- !u!1 &3415494057494917971
 GameObject:
