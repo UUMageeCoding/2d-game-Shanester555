@@ -6,17 +6,11 @@
 2. add conveyor belts
    1. use the same code as the moving platform to make everything a child so I could later add boxes to move on the conveyors
 3. add sprites
-   1. tilemap
-      1. have plenty of foreground tiles for secrets
-   2. player
+   1. player
       1. animate face
-      2. animate gear and possibly wheel seperately from rest of body
-      3. make the gear speed up when other animations are playing for smoother animation
-      4. update sprite when permanent upgrades are found
-   3. moving platforms
-   4. collectables
+      2. update sprite when permanent upgrades are found
+   2. collectables
       1. have the upgrades be parts from other bots in the factory
-      2. have the common collectables be silver versions of the player's golden gear
 4. other robots?
    1. have them be fairly static in behaviour, just some flavour for the game
 5. switches and doors
@@ -33,11 +27,21 @@
       4. set speed, zero gravity, kill player tag, destroyed on any collision
 8. antenna upgrade
    1. add an antenna to the head which flashes when a collectable is nearby
+9. Pause screen
+   1.  have it access options and allow player to quit to screen
 
 
 Changes:
-1. Remove the black outline from the pipes
-2. Change the fall animation to have a small starting animation which transitions to a loop
-3. try combining sprite animations to the player character to change how their eyes look
-4. fix wall jump you fucking loser
-5. change moving saws to slow down near peak, most likely by slowing the speed down as the distance between two points closes
+1. try combining sprite animations to the player character to change how their eyes look
+2. fix wall jump you fucking loser
+3. change moving saws to slow down near peak, most likely by slowing the speed down as the distance between two points closes
+
+Checklist (needs to be finished):
+1. finish art for the main menu
+   1. finish the options part of the menu
+2. make the final two screens of the game
+3. fix all the remaining level transitions
+4. finish the second ending cutscene
+   1. add sound to both cutscenes
+5. Add text guide for interacting with final door and telling player if they have enough gears
+   1. maybe add a visual cue on where they can interact, like a light source?

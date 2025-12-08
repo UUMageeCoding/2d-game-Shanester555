@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     public static bool wallJumpUnlock = false;
     public static bool initialStart = true;
     public static bool canMove = true;
+    public static bool timeIsRunning = false;
 
     public static int collectableCount = 0;
+    public static float timePassed = 0;
 
     public static GameManager Instance
     {

@@ -66,6 +66,9 @@ public class PlatformerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         respawnPoint = transform.position;
+        GameManager.timeIsRunning = true;
+        GameManager.timePassed = 0;
+        GameManager.collectableCount = 0;
     }
 
     void Update()
@@ -335,7 +338,6 @@ public class PlatformerController : MonoBehaviour
             GameManager.collectableCount++;
             SoundFXManager.instance.PlaySoundFXClip(collectableSoundClip, transform, 1f, 0);
             Destroy(collision.gameObject);
-            Debug.Log(GameManager.collectableCount);
         }
     }
 

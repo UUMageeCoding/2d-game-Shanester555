@@ -19,13 +19,15 @@ public class OpenEndingDoor : MonoBehaviour
     {
         if (inTrigger && Input.GetKeyDown(KeyCode.E))
         {
-            if (GameManager.collectableCount >= 8 && GameManager.collectableCount != 13)
+            if (GameManager.collectableCount >= 7 && GameManager.collectableCount != 13)
             {
                 SceneManager.LoadScene("EndingScene1");
+                GameManager.timeIsRunning = false;
             }
             else if (GameManager.collectableCount == 13)
             {
                 SceneManager.LoadScene("EndingScene2");
+                GameManager.timeIsRunning = false;
             }
         }
     }
