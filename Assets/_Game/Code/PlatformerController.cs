@@ -69,6 +69,7 @@ public class PlatformerController : MonoBehaviour
         GameManager.timeIsRunning = true;
         GameManager.timePassed = 0;
         GameManager.collectableCount = 0;
+
     }
 
     void Update()
