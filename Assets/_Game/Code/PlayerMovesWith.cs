@@ -5,6 +5,7 @@ public class PlayerMovesWith : MonoBehaviour
 {
     private Rigidbody2D rb;
 
+    // sets player to child of object they stand on, letting player move smoothly with the object
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collision.transform.SetParent(transform);

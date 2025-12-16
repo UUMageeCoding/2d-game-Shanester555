@@ -26,9 +26,12 @@ public class ScreenTransition : MonoBehaviour
 
     private IEnumerator TeleportAndChangeBounds()
     {
+        // screen fades to black
         animator.SetTrigger("End");
+        // stops player fro moving
         GameManager.canMove = false;
 
+        // waits for screen to fully fade to black before moving camera
         yield return new WaitForSeconds(timer);
 
         // Optionally disable confiner momentarily
@@ -37,12 +40,15 @@ public class ScreenTransition : MonoBehaviour
         // Assign new confiner bounds
         confiner.BoundingShape2D = newBounds;
 
+        // sends player to the next screen
         player.transform.position = target.position;
 
         rb.transform.eulerAngles = new Vector3(rb.transform.eulerAngles.x, rb.transform.eulerAngles.y, 0);
 
+        // waits for camera to move before fading screen in 
         yield return new WaitForSeconds(timer);
 
+        // screen fades back in
         animator.SetTrigger("Start");
 
         GameManager.canMove = true;

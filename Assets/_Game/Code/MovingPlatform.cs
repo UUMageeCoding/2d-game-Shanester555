@@ -16,6 +16,7 @@ public class MovingPlatform : MonoBehaviour
 
     void Update()
     {
+        // for every point in the list, moves towards each point in the desired order
         if (Vector2.Distance(transform.position, points[i].position) < 0.02f)
         {
             i++;
@@ -28,6 +29,7 @@ public class MovingPlatform : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
     }
 
+    // lets objects that collide with it move with it
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collision.transform.SetParent(transform);

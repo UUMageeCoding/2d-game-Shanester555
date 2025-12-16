@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class CompletionPercentage : MonoBehaviour
 {
+    // attempted to have percentage shown, scrapped in favor of fraction
     public Text percentageText;
     public float percentage;
 

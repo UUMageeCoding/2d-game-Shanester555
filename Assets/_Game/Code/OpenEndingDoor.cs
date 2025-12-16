@@ -8,6 +8,7 @@ public class OpenEndingDoor : MonoBehaviour
     [SerializeField] Animator animator1;
     [SerializeField] Animator animator2;
 
+    // sets the UI for interacting with the door to appear/dissappear if the player enters/exits the trigger zone
     private void OnTriggerEnter2D(Collider2D collision)
     {
         inTrigger = true;
@@ -22,18 +23,15 @@ public class OpenEndingDoor : MonoBehaviour
 
     void Update()
     {
+        // if the player interacts and has at least 7 gears, ending cutscene plays
         if (inTrigger && Input.GetKeyDown(KeyCode.E))
         {
-            if (GameManager.collectableCount >= 7 && GameManager.collectableCount != 13)
+            if (GameManager.collectableCount >= 7)
             {
                 SceneManager.LoadScene("EndingScene1");
                 GameManager.timeIsRunning = false;
             }
-            else if (GameManager.collectableCount == 13)
-            {
-                SceneManager.LoadScene("EndingScene2");
-                GameManager.timeIsRunning = false;
-            }
+            // gives players a temporary UI popup to inform them they haven't collected enough gears
             else
             {
                 StartCoroutine(RejectAnim());

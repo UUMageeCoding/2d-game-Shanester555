@@ -11,7 +11,7 @@ public class AnimationDelay : MonoBehaviour
         StartCoroutine(DelayAnimation());
     }
 
-    
+    // gets time to make the animation wait to start, then sets it to a set speed
     private IEnumerator DelayAnimation()
     {
         yield return new WaitForSeconds(timer);

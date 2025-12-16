@@ -118,6 +118,7 @@ public class PlatformerController : MonoBehaviour
             WallJump();
         }
 
+        // prevents the player from accidentally using their double jump while wall jumping
         if (IsWalled() && !canDoubleJump)
         {
             canDoubleJump = false;
@@ -173,7 +174,7 @@ public class PlatformerController : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        // resets dash and speed if player stops moving or lands after dash ends (might try to add turning around as well)
+        // resets dash and speed if player lands after dash ends or turns around mid dash
         if (IsGrounded() && !isDashing || IsWalled() && !isDashing)
         {
             moveSpeed = maxSpeed;
@@ -263,8 +264,7 @@ public class PlatformerController : MonoBehaviour
     }
 
     // lets players wall jump if they are wall sliding
-    private void WallJump() // tweak values to feel better to play, far to slow/unresponsive
-        // maybe less time jumping away from wall and no cooldown, akin to hollow knight?
+    private void WallJump()
     {
         if (isWallSliding)
         {
@@ -299,6 +299,7 @@ public class PlatformerController : MonoBehaviour
     }
 
     // stops wall jump function while refreshing player's double jump
+    // need to ensure player can keep their double jump when not using it and falling off of a wall instead of only gaining it coming off of a wall jump
     private void StopWallJumping()
     {
         isWallJumping = false;
@@ -310,15 +311,18 @@ public class PlatformerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // sends player back to their last checkpoint
         if (collision.tag == "KillPlayer")
         {
             SoundFXManager.instance.PlaySoundFXClip(damageSoundClip, transform, 1f, 0);
             transform.position = respawnPoint;
         }
+        // sets the player respawn point to the latest checkpoint
         else if (collision.tag == "Checkpoint")
         {
             respawnPoint = transform.position;
         }
+        // unlocks various abilities for the player to use
         else if (collision.tag == "Dash")
         {
             dashUnlock = true;
@@ -334,6 +338,7 @@ public class PlatformerController : MonoBehaviour
             wallJumpUnlock = true;
             Destroy(collision.gameObject);
         }
+        // incriments the total amount of collectables the player has by 1
         else if (collision.tag == "Collectable")
         {
             GameManager.collectableCount++;
@@ -342,6 +347,7 @@ public class PlatformerController : MonoBehaviour
         }
     }
 
+    // sets the one way platform the player stands on to the current one in code
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("OneWayPlatform"))
@@ -350,6 +356,7 @@ public class PlatformerController : MonoBehaviour
         }
     }
 
+    // makes current one way platform empty if player isn't standing on one
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("OneWayPlatform"))
@@ -358,6 +365,7 @@ public class PlatformerController : MonoBehaviour
         }
     }
 
+    // disables the collision between the player and current one way platform exclusively
     private IEnumerator DisableCollision()
     {
         BoxCollider2D platformCollider = currentOneWayPlatform.GetComponent<BoxCollider2D>();

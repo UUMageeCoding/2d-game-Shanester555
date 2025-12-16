@@ -16,7 +16,7 @@ public class OnCollection : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-
+    // attempted to have a unique animation play for the collectable when collected, but couldn't get it to work
     void Update()
     {
         if (isCollected)
